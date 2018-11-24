@@ -4,16 +4,12 @@ public class Snake {
     int _yCoordinate;
     boolean _walls;
     int _boxSize;
+    boolean wallHit =  false;
 
     Snake(boolean walls, int boxSize){
         _walls = walls;
         _boxSize = boxSize;
 
-    }
-
-    //Gets the length of the snake for drawing
-    public int get_length() {
-        return _length;
     }
 
     //Adds a value to the length of the snake
@@ -22,5 +18,30 @@ public class Snake {
     }
 
     //Moves the snake 1 step at a time
-    public void move(){}
+    public void move(Directions direction){
+        //Setting up snake movement
+        switch(direction){
+            case UP: _yCoordinate++;
+                break;
+            case DOWN: _yCoordinate--;
+                break;
+            case LEFT: _xCoordinate--;
+                break;
+            case RIGHT: _xCoordinate++;
+                break;
+        }
+
+        //Checking if wall is passed through
+        if(_xCoordinate <= 0){
+            _xCoordinate = _boxSize;
+        } else if(_xCoordinate > _boxSize){
+            _xCoordinate = 0;
+        }
+
+        if(_yCoordinate <= 0){
+            _yCoordinate = _boxSize;
+        } else if(_yCoordinate > _boxSize){
+            _yCoordinate = 0;
+        }
+    }
 }
