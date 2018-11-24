@@ -12,4 +12,11 @@ public class Snake {
         SnakeBlock block = new SnakeBlock(walls, boxSize, xCoor, yCoor, directions);
         snake.add(block);
     }
+
+    //Changes the coordinates of each block so it is reflected in the move
+    public void move(Directions direction){
+        for(SnakeBlock block : snake){
+            block.move(direction);
+        }
+    }
 }

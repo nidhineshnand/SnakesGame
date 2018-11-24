@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 public class Main extends Application {
-    SnakeBlock snakeBody = new SnakeBlock(true, 600, 10, 10   );
+    Snake snakeBody = new Snake(600, 10, 10, false);
     Boolean walls;
     Directions direction;
     boolean dirChange;
