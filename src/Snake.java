@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Snake {
     private int _length = 3;
     private int _xCoordinate;
@@ -6,6 +8,7 @@ public class Snake {
     private int _boxSize;
     private boolean wallHit =  false;
     private int points;
+    private ArrayList<int []> bodyCoor = new ArrayList<>();
 
     Snake(boolean walls, int boxSize, int xCoordinate, int yCoordinate){
         _walls = walls;
