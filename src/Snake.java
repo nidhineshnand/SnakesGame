@@ -1,11 +1,11 @@
 public class Snake {
-    int _length = 3;
-    int _xCoordinate;
-    int _yCoordinate;
-    boolean _walls;
-    int _boxSize;
-    boolean wallHit =  false;
-    int points;
+    private int _length = 3;
+    private int _xCoordinate;
+    private int _yCoordinate;
+    private boolean _walls;
+    private int _boxSize;
+    private boolean wallHit =  false;
+    private int points;
 
     Snake(boolean walls, int boxSize){
         _walls = walls;
