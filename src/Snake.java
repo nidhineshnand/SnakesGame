@@ -4,7 +4,8 @@ public class Snake {
     ArrayList<SnakeBlock> snake = new ArrayList<>();
 
     Snake(int xCoor, int yCoor, int boxSize, boolean walls){
-        addBlock(xCoor, yCoor, boxSize, walls, null);
+        ArrayList<Directions> directions = new ArrayList<>();
+        addBlock(xCoor, yCoor, boxSize, walls, directions);
     }
 
     public void addBlock(int xCoor, int yCoor, int boxSize, boolean walls, ArrayList<Directions> directions){

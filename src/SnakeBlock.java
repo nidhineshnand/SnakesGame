@@ -19,40 +19,52 @@ public class SnakeBlock {
 
     //Moves the snakeBody 1 step at a time
     public void move(Directions direction){
+        //Adding directions to arraylist and only using the first direction
+        _directions.add(direction);
+        direction = _directions.get(0);
 
         //For initial directions call. SnakeBlock always starts with going right
-        if (direction == null){
+        if (direction == null) {
             direction = Directions.RIGHT;
         }
         //Setting up snakeBody movement
-        switch(direction){
-            case UP: _yCoordinate--;
+        switch (direction) {
+            case UP:
+                _yCoordinate--;
                 break;
-            case DOWN: _yCoordinate++;
+            case DOWN:
+                _yCoordinate++;
                 break;
-            case LEFT: _xCoordinate--;
+            case LEFT:
+                _xCoordinate--;
                 break;
-            case RIGHT: _xCoordinate++;
+            case RIGHT:
+                _xCoordinate++;
                 break;
         }
 
         //Checking if wall is passed through
-        if(_xCoordinate <= 0){
+        if (_xCoordinate <= 0) {
             _xCoordinate = _boxSize;
             wallHit = true;
-        } else if(_xCoordinate > _boxSize){
+        } else if (_xCoordinate > _boxSize) {
             _xCoordinate = 0;
             wallHit = true;
         }
 
-        if(_yCoordinate <= 0){
+        if (_yCoordinate <= 0) {
             _yCoordinate = _boxSize;
             wallHit = true;
-        } else if(_yCoordinate > _boxSize){
+        } else if (_yCoordinate > _boxSize) {
             _yCoordinate = 0;
             wallHit = true;
         }
+
+        //Removing the oldest direction that is used
+        _directions.remove(0);
     }
+
+
 
 
     //Method checks if one of the wall has been hit
