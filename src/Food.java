@@ -7,6 +7,7 @@ public class Food {
 
     Food(int boxSize){
         _boxSize = boxSize;
+        changeFoodCoor();
     }
 
     //Method gets random coordinate for the food

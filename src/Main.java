@@ -49,7 +49,9 @@ public class Main extends Application {
                     food.changeFoodCoor();
                 }
                 gc.clearRect(0, 0, primaryStage.getWidth(), primaryStage.getHeight());
-                drawSnake(gc);
+                for(SnakeBlock snake : snakeBody.getSnake()) {
+                    drawSnake(gc, snake);
+                }
                 drawFood(gc);
             }
         }.start();
@@ -71,13 +73,13 @@ public class Main extends Application {
     }
 
     //Method draws snakeBody on canvas
-    private void drawSnake(GraphicsContext gc) {
-        for(SnakeBlock snake : snakeBody.getSnake()) {
+    private void drawSnake(GraphicsContext gc, SnakeBlock snake) {
+
             gc.setFill(Color.BLACK);
             gc.fillRect(snake.get_xCoordinate(), snake.get_yCoordinate(), 10, 10);
             gc.setFill(Color.GREEN);
             gc.setStroke(Color.BLUE);
-        }
+
     }
 
     //Method draws snakeBody on canvas
