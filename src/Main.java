@@ -4,18 +4,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.event.EventHandler;
-
-import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
-    Snake snake = new Snake(true, 600, 10, 10   );
+    SnakeBlock snakeBody = new SnakeBlock(true, 600, 10, 10   );
     Boolean walls;
     Directions direction;
     boolean dirChange;
@@ -47,8 +42,8 @@ public class Main extends Application {
 
             @Override
             public void handle(long now) {
-                //Moving snake
-                snake.move(direction);
+                //Moving snakeBody
+                snakeBody.move(direction);
                 gc.clearRect(0, 0, primaryStage.getWidth(), primaryStage.getHeight());
                 drawSnake(gc);
             }
@@ -70,10 +65,10 @@ public class Main extends Application {
         });
     }
 
-    //Method draws snake on canvas
+    //Method draws snakeBody on canvas
     private void drawSnake(GraphicsContext gc) {
         gc.setFill(Color.BLACK);
-        gc.fillRect(snake.get_xCoordinate(), snake.get_yCoordinate(), 10, 10);
+        gc.fillRect(snakeBody.get_xCoordinate(), snakeBody.get_yCoordinate(), 10, 10);
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
 
