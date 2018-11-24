@@ -21,5 +21,6 @@ public class Snake {
         _length++;
     }
 
-
+    //Moves the snake 1 step at a time
+    public void move(){}
 }
