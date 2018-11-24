@@ -1,11 +1,18 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-//  w  w  w  .  j a  v  a2s . c  o m
+import javafx.scene.control.Button;
+import javafx.event.EventHandler;
+
 public class Main extends Application {
+    Snake snake;
+    Boolean walls;
+    Directions direction;
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -14,17 +21,35 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("");
         Group root = new Group();
-        Scene scene = new Scene(root, 300, 250, Color.WHITE);
+        int boxHeight = 600;
+        Scene scene = new Scene(root, boxHeight, boxHeight + 200, Color.WHITE);
 
+        //Creating buttons that will manage snakes
+        HBox bottomButtons = new HBox();
+        //Setting start button to reset the game
+        Button start = new Button("Start");
+        Button wall = new Button("Walls");
 
+        snake.move(direction);
         Rectangle r = new Rectangle();
         r.setX(50);
         r.setY(50);
-        r.setWidth(200);
-        r.setHeight(100);
+        r.setWidth(10);
+        r.setHeight(10);
 
         root.getChildren().add(r);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void setSnakeDir(Scene scene){
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case UP:   direction = Directions.UP; break;
+                case RIGHT: direction = Directions.RIGHT; break;
+                case DOWN:  direction = Directions.DOWN; break;
+                case LEFT:  direction = Directions.LEFT; break;
+            }
+        });
     }
 }
