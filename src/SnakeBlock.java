@@ -92,4 +92,8 @@ public class SnakeBlock {
     public int get_yCoordinate() {
         return _yCoordinate;
     }
+
+    public ArrayList<Directions> get_directions() {
+        return _directions;
+    }
 }
