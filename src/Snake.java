@@ -28,9 +28,9 @@ public class Snake {
         }
         //Setting up snake movement
         switch(direction){
-            case UP: _yCoordinate++;
+            case UP: _yCoordinate--;
                 break;
-            case DOWN: _yCoordinate--;
+            case DOWN: _yCoordinate++;
                 break;
             case LEFT: _xCoordinate--;
                 break;
