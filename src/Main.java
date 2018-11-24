@@ -18,6 +18,7 @@ public class Main extends Application {
     Snake snake = new Snake(true, 600, 10, 10   );
     Boolean walls;
     Directions direction;
+    boolean dirChange;
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -61,10 +62,10 @@ public class Main extends Application {
     private void setSnakeDir(Scene scene){
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case UP:   direction = Directions.UP; break;
-                case RIGHT: direction = Directions.RIGHT; break;
-                case DOWN:  direction = Directions.DOWN; break;
-                case LEFT:  direction = Directions.LEFT; break;
+                case UP:   direction = Directions.UP; dirChange = true; break;
+                case RIGHT: direction = Directions.RIGHT;dirChange = true; break;
+                case DOWN:  direction = Directions.DOWN;dirChange = true; break;
+                case LEFT:  direction = Directions.LEFT;dirChange = true; break;
             }
         });
     }
