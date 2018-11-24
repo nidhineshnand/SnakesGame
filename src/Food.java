@@ -10,8 +10,10 @@ public class Food {
     }
 
     //Method gets random coordinate for the food
-    public int getFoodCoor(){
+    public void changeFoodCoor(){
         Random rand = new Random();
-        return rand.nextInt(_boxSize);
+        _xCoordinate = rand.nextInt(_boxSize);
+        Random rand1 = new Random();
+        _yCoordinate = rand1.nextInt(_boxSize);
     }
 }
