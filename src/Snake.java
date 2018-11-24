@@ -53,12 +53,18 @@ public class Snake {
     }
 
     //Checks if food is eaten by the snake
-    public  void isFoodEaten(int x, int y){
+    public boolean isFoodEaten(int x, int y){
         SnakeBlock firstBlock = snake.get(0);
         if(Math.sqrt(Math.pow(x - firstBlock.get_xCoordinate(), 2) + (Math.pow(y - firstBlock.get_yCoordinate(), 2))) <= 9.8){
             ArrayList<Directions> directions = new ArrayList<>();
             addBlock(0, 0, _boxSize,_walls ,directions);
+            return true;
+        } else {
+            return false;
         }
     }
 
+    public ArrayList<SnakeBlock> getSnake() {
+        return snake;
+    }
 }

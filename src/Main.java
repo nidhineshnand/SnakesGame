@@ -14,6 +14,7 @@ public class Main extends Application {
     Boolean walls;
     Directions direction;
     boolean dirChange;
+    Food food = new Food(600);
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -42,10 +43,14 @@ public class Main extends Application {
 
             @Override
             public void handle(long now) {
-                //Moving snakeBody
-                snakeBody.move(direction);
+                //Moving snakeBody by checking if the food is eaten
+                Boolean eaten = snakeBody.isFoodEaten(food.get_xCoordinate(), food.get_yCoordinate());
+                if(eaten){
+                    food.changeFoodCoor();
+                }
                 gc.clearRect(0, 0, primaryStage.getWidth(), primaryStage.getHeight());
                 drawSnake(gc);
+                drawFood(gc);
             }
         }.start();
 
@@ -67,10 +72,19 @@ public class Main extends Application {
 
     //Method draws snakeBody on canvas
     private void drawSnake(GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
-        gc.fillRect(snakeBody.get_xCoordinate(), snakeBody.get_yCoordinate(), 10, 10);
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLUE);
+        for(SnakeBlock snake : snakeBody.getSnake()) {
+            gc.setFill(Color.BLACK);
+            gc.fillRect(snake.get_xCoordinate(), snake.get_yCoordinate(), 10, 10);
+            gc.setFill(Color.GREEN);
+            gc.setStroke(Color.BLUE);
+        }
+    }
 
+    //Method draws snakeBody on canvas
+    private void drawFood(GraphicsContext gc) {
+            gc.setFill(Color.GREEN);
+            gc.fillRect(food.get_xCoordinate(), food.get_yCoordinate(), 10, 10);
+            gc.setFill(Color.GREEN);
+            gc.setStroke(Color.BLUE);
     }
 }
