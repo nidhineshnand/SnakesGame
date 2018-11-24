@@ -7,9 +7,11 @@ public class Snake {
     private boolean wallHit =  false;
     private int points;
 
-    Snake(boolean walls, int boxSize){
+    Snake(boolean walls, int boxSize, int xCoordinate, int yCoordinate){
         _walls = walls;
         _boxSize = boxSize;
+        _xCoordinate = xCoordinate;
+        _yCoordinate = yCoordinate;
 
     }
 
