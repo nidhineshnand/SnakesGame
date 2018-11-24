@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 public class Main extends Application {
-    Snake snakeBody = new Snake(600, 10, 10, false);
+    Snake snakeBody = new Snake( 10, 10,600, false);
     Boolean walls;
     Directions direction;
     boolean dirChange;
@@ -49,9 +49,11 @@ public class Main extends Application {
                     food.changeFoodCoor();
                 }
                 gc.clearRect(0, 0, primaryStage.getWidth(), primaryStage.getHeight());
+                snakeBody.move(direction);
                 for(SnakeBlock snake : snakeBody.getSnake()) {
                     drawSnake(gc, snake);
                 }
+                gc.save();
                 drawFood(gc);
             }
         }.start();
@@ -74,7 +76,6 @@ public class Main extends Application {
 
     //Method draws snakeBody on canvas
     private void drawSnake(GraphicsContext gc, SnakeBlock snake) {
-
             gc.setFill(Color.BLACK);
             gc.fillRect(snake.get_xCoordinate(), snake.get_yCoordinate(), 10, 10);
             gc.setFill(Color.GREEN);
