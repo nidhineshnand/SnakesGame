@@ -5,6 +5,7 @@ public class Snake {
     boolean _walls;
     int _boxSize;
     boolean wallHit =  false;
+    int points;
 
     Snake(boolean walls, int boxSize){
         _walls = walls;
@@ -56,6 +57,15 @@ public class Snake {
             return false;
         } else{
             return true;
+        }
+    }
+
+    //Method checks if the snake has eaten the food
+    public boolean isFoodEaten(int xFood, int yFood){
+        if(xFood == _xCoordinate && yFood == _yCoordinate){
+            return true;
+        } else {
+            return false;
         }
     }
 }
