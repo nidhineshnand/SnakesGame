@@ -22,6 +22,7 @@ public class Snake {
 
     //Moves the snake 1 step at a time
     public void move(Directions direction){
+        //For initial directions call. Snake always starts with going right
         if (direction == null){
             direction = Directions.RIGHT;
         }
