@@ -1,5 +1,5 @@
 public class Snake {
-    int _length;
+    int _length = 3;
     int _xCoordinate;
     int _yCoordinate;
     boolean _walls;
@@ -46,6 +46,16 @@ public class Snake {
         } else if(_yCoordinate > _boxSize){
             _yCoordinate = 0;
             wallHit = true;
+        }
+    }
+
+
+    //Method checks if one of the wall has been hit
+    public boolean hasWallBeenHit(){
+        if(!_walls || !wallHit){
+            return false;
+        } else{
+            return true;
         }
     }
 }
