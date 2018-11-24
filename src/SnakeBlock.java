@@ -6,13 +6,14 @@ public class SnakeBlock {
     private boolean _walls;
     private int _boxSize;
     private boolean wallHit =  false;
-    private ArrayList<Directions> bodyCoor = new ArrayList<>();
+    private ArrayList<Directions> _directions = new ArrayList<>();
 
-    SnakeBlock(boolean walls, int boxSize, int xCoordinate, int yCoordinate){
+    SnakeBlock(boolean walls, int boxSize, int xCoordinate, int yCoordinate, ArrayList<Directions> directions){
         _walls = walls;
         _boxSize = boxSize;
         _xCoordinate = xCoordinate;
         _yCoordinate = yCoordinate;
+        _directions = directions;
 
     }
 
