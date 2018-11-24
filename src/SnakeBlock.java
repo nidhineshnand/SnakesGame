@@ -5,10 +5,11 @@ public class SnakeBlock {
     private int _yCoordinate;
     private boolean _walls;
     private int _boxSize;
-    private boolean wallHit =  false;
-    private ArrayList<Directions> _directions = new ArrayList<>();
+    private int _saveLength;
+    private boolean wallHit = false;
+    private ArrayList<Directions> _directions;
 
-    SnakeBlock(boolean walls, int boxSize, int xCoordinate, int yCoordinate, ArrayList<Directions> directions){
+    SnakeBlock(boolean walls, int boxSize, int xCoordinate, int yCoordinate, ArrayList<Directions> directions) {
         _walls = walls;
         _boxSize = boxSize;
         _xCoordinate = xCoordinate;
@@ -18,17 +19,17 @@ public class SnakeBlock {
     }
 
     //Moves the snakeBody 1 step at a time
-    public void move(Directions direction){
+    public void move(Directions direction) {
         //Adding directions to arraylist and only using the first direction
         _directions.add(direction);
-        direction = _directions.get(0);
+        Directions direction1 = _directions.get(0);
 
         //For initial directions call. SnakeBlock always starts with going right
-        if (direction == null) {
-            direction = Directions.RIGHT;
+        if (direction1 == null) {
+            direction1 = Directions.RIGHT;
         }
         //Setting up snakeBody movement
-        switch (direction) {
+        switch (direction1) {
             case UP:
                 _yCoordinate--;
                 break;
@@ -61,29 +62,21 @@ public class SnakeBlock {
         }
 
         //Removing the oldest direction that is used
-        _directions.remove(0);
+        if (_directions.size() >= _saveLength) {
+            _directions.remove(0);
+        }
     }
-
-
 
 
     //Method checks if one of the wall has been hit
-    public boolean hasWallBeenHit(){
-        if(!_walls || !wallHit){
+    public boolean hasWallBeenHit() {
+        if (!_walls || !wallHit) {
             return false;
-        } else{
+        } else {
             return true;
         }
     }
 
-    //Method checks if the snakeBody has eaten the food
-    public boolean isFoodEaten(int xFood, int yFood){
-        if(xFood == _xCoordinate && yFood == _yCoordinate){
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public int get_xCoordinate() {
         return _xCoordinate;
@@ -95,5 +88,9 @@ public class SnakeBlock {
 
     public ArrayList<Directions> get_directions() {
         return _directions;
+    }
+
+    public void set_saveLength(int val){
+        _saveLength = val;
     }
 }
