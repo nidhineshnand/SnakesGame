@@ -34,14 +34,18 @@ public class Snake {
         //Checking if wall is passed through
         if(_xCoordinate <= 0){
             _xCoordinate = _boxSize;
+            wallHit = true;
         } else if(_xCoordinate > _boxSize){
             _xCoordinate = 0;
+            wallHit = true;
         }
 
         if(_yCoordinate <= 0){
             _yCoordinate = _boxSize;
+            wallHit = true;
         } else if(_yCoordinate > _boxSize){
             _yCoordinate = 0;
+            wallHit = true;
         }
     }
 }
