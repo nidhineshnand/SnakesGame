@@ -16,4 +16,12 @@ public class Food {
         Random rand1 = new Random();
         _yCoordinate = rand1.nextInt(_boxSize);
     }
+
+    public int get_xCoordinate() {
+        return _xCoordinate;
+    }
+
+    public int get_yCoordinate() {
+        return _yCoordinate;
+    }
 }
