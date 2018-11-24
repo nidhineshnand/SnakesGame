@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.event.EventHandler;
 
 public class Main extends Application {
-    Snake snake = new Snake(true, 600);
+    Snake snake = new Snake(true, 600, 10, 10);
     Boolean walls;
     Directions direction;
     public static void main(String[] args) {

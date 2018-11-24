@@ -22,6 +22,9 @@ public class Snake {
 
     //Moves the snake 1 step at a time
     public void move(Directions direction){
+        if (direction == null){
+            direction = Directions.RIGHT;
+        }
         //Setting up snake movement
         switch(direction){
             case UP: _yCoordinate++;
