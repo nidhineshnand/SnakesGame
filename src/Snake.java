@@ -69,4 +69,12 @@ public class Snake {
             return false;
         }
     }
+
+    public int get_xCoordinate() {
+        return _xCoordinate;
+    }
+
+    public int get_yCoordinate() {
+        return _yCoordinate;
+    }
 }
