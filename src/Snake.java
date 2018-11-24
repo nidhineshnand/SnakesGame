@@ -63,6 +63,7 @@ public class Snake {
     //Method checks if the snake has eaten the food
     public boolean isFoodEaten(int xFood, int yFood){
         if(xFood == _xCoordinate && yFood == _yCoordinate){
+            addOne();
             return true;
         } else {
             return false;
