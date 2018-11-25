@@ -21,27 +21,32 @@ public class Snake {
             SnakeBlock block = new SnakeBlock(walls, boxSize, xCoor, yCoor);
             snake.add(block);
         } else{
-            SnakeBlock previousBlock = snake.get(snake.size() - 1);
-            //Making sure that the new block is added at the right place
-            System.out.println(moves.get(moves.size() - 2));
-            switch (moves.get(moves.size() - 1)) {
-                case RIGHT:
-                    SnakeBlock block = new SnakeBlock(walls, boxSize, previousBlock.get_xCoordinate() - 10, previousBlock.get_yCoordinate());
-                    snake.add(block);
-                    break;
-                case LEFT:
-                    SnakeBlock block1 = new SnakeBlock(walls, boxSize, previousBlock.get_xCoordinate() + 10, previousBlock.get_yCoordinate());
-                    snake.add(block1);
-                    break;
-                case DOWN:
-                    SnakeBlock block2 = new SnakeBlock(walls, boxSize, previousBlock.get_xCoordinate(), previousBlock.get_yCoordinate() - 10);
-                    snake.add(block2);
-                    break;
-                case UP:
-                    SnakeBlock block3 = new SnakeBlock(walls, boxSize, previousBlock.get_xCoordinate(), previousBlock.get_yCoordinate() + 10);
-                    snake.add(block3);
-                    break;
+            int right = 0;
+            int left = 0;
+            int up = 0;
+            int down = 0;
+            //Making sure that the new block is added at the right place by looking at the last 10 moves of the last
+            //block in the snake body
+            for(Directions dir : moves.subList(moves.size() - 10, moves.size())){
+                switch (dir) {
+                    case RIGHT:
+                        right++;
+                        break;
+                    case LEFT:
+                        left++;
+                        break;
+                    case DOWN:
+                        down++;
+                        break;
+                    case UP:
+                        up++;
+                        break;
+                }
             }
+            SnakeBlock lastBlock = snake.get(snake.size()-1);
+            SnakeBlock block = new SnakeBlock(walls, boxSize, lastBlock.get_xCoordinate() + (left - right), lastBlock.get_yCoordinate() + (up - down));
+            snake.add(block);
+
         }
 
 
@@ -55,7 +60,7 @@ public class Snake {
             block.move(moves.get(counter*10));
             counter++;
         }
-        if(moves.size() > snake.size()*10 + 10) {
+        if(moves.size() > snake.size()*10) {
             moves.remove(moves.size() - 1);
         }
     }
