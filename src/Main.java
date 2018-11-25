@@ -38,12 +38,16 @@ public class Main extends Application {
 
         //Making sure that arrow keys change directions
         setSnakeDir(scene);
+        //VBox to colour canvas
+        VBox canvasBackground = new VBox();
+        canvasBackground.setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null)));
         //Canvas for drawing
         Canvas canvas = new Canvas(600, 600);
         final GraphicsContext gc = canvas.getGraphicsContext2D();
+        canvasBackground.getChildren().add(canvas);
 
         //Creating buttons that will manage snakes
-        HBox bottomButtons = new HBox();
+        HBox bottomButtons = new HBox(20);
         //Setting start button to reset the game
         Button start = new Button("Reset");
         start.setOnAction(event -> {
@@ -64,7 +68,7 @@ public class Main extends Application {
 
         bottomButtons.getChildren().addAll(start, wall, score);
         VBox mainContainer = new VBox();
-        mainContainer.getChildren().addAll(canvas, bottomButtons);
+        mainContainer.getChildren().addAll(canvasBackground, bottomButtons);
         root.getChildren().add(mainContainer);
 
         new AnimationTimer() {
