@@ -3,14 +3,11 @@ import java.util.ArrayList;
 public class SnakeBlock {
     private int _xCoordinate;
     private int _yCoordinate;
-    private boolean _walls;
     private int _boxSize;
-    private int _saveLength;
     private boolean wallHit = false;
     private ArrayList<Directions> moves;
 
-    SnakeBlock(boolean walls, int boxSize, int xCoordinate, int yCoordinate) {
-        _walls = walls;
+    SnakeBlock(int boxSize, int xCoordinate, int yCoordinate) {
         _boxSize = boxSize;
         _xCoordinate = xCoordinate;
         _yCoordinate = yCoordinate;
@@ -62,11 +59,7 @@ public class SnakeBlock {
 
     //Method checks if one of the wall has been hit
     public boolean hasWallBeenHit() {
-        if (!_walls || !wallHit) {
-            return false;
-        } else {
-            return true;
-        }
+        return wallHit;
     }
 
 
@@ -82,7 +75,4 @@ public class SnakeBlock {
         return moves;
     }
 
-    public int get_saveLength(){
-        return _saveLength;
-    }
 }

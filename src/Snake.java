@@ -18,7 +18,7 @@ public class Snake {
 
         if(snake.isEmpty()){
             moves.add(Directions.RIGHT);
-            SnakeBlock block = new SnakeBlock(walls, boxSize, xCoor, yCoor);
+            SnakeBlock block = new SnakeBlock(boxSize, xCoor, yCoor);
             snake.add(block);
         } else{
             int right = 0;
@@ -44,7 +44,7 @@ public class Snake {
                 }
             }
             SnakeBlock lastBlock = snake.get(snake.size()-1);
-            SnakeBlock block = new SnakeBlock(walls, boxSize, lastBlock.get_xCoordinate() + (left - right), lastBlock.get_yCoordinate() + (up - down));
+            SnakeBlock block = new SnakeBlock( boxSize, lastBlock.get_xCoordinate() + (left - right), lastBlock.get_yCoordinate() + (up - down));
             snake.add(block);
 
         }
