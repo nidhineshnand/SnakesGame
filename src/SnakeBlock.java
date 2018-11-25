@@ -7,29 +7,25 @@ public class SnakeBlock {
     private int _boxSize;
     private int _saveLength;
     private boolean wallHit = false;
-    private ArrayList<Directions> _directions;
+    private ArrayList<Directions> moves;
 
-    SnakeBlock(boolean walls, int boxSize, int xCoordinate, int yCoordinate, ArrayList<Directions> directions) {
+    SnakeBlock(boolean walls, int boxSize, int xCoordinate, int yCoordinate) {
         _walls = walls;
         _boxSize = boxSize;
         _xCoordinate = xCoordinate;
         _yCoordinate = yCoordinate;
-        _directions = directions;
 
     }
 
     //Moves the snakeBody 1 step at a time
     public void move(Directions direction) {
-        //Adding directions to arraylist and only using the first direction
-        _directions.add(direction);
-        Directions direction1 = _directions.get(0);
 
         //For initial directions call. SnakeBlock always starts with going right
-        if (direction1 == null) {
-            direction1 = Directions.RIGHT;
+        if (direction == null) {
+            direction = Directions.RIGHT;
         }
         //Setting up snakeBody movement
-        switch (direction1) {
+        switch (direction) {
             case UP:
                 _yCoordinate--;
                 break;
@@ -62,8 +58,8 @@ public class SnakeBlock {
         }
 
         //Removing the oldest direction that is used
-        if (_directions.size() >= _saveLength) {
-            _directions.remove(0);
+        if (moves.size() >= _saveLength) {
+            moves.remove(0);
         }
     }
 
@@ -87,10 +83,10 @@ public class SnakeBlock {
     }
 
     public ArrayList<Directions> get_directions() {
-        return _directions;
+        return moves;
     }
 
-    public void set_saveLength(int val){
-        _saveLength = val;
+    public int get_saveLength(){
+        return _saveLength;
     }
 }
