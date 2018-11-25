@@ -6,9 +6,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -49,7 +51,7 @@ public class Main extends Application {
         Button wall = new Button("Walls");
         wall.setOnAction(e -> {
             walls = !walls;
-            //Changing colour to signify that walls have been turned on
+            //Changing button colour to signify that walls have been turned on
             if(walls){
                 wall.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
             } else {
@@ -57,7 +59,10 @@ public class Main extends Application {
             }
         });
 
-        root.getChildren().add(canvas);
+        bottomButtons.getChildren().addAll(start, wall);
+        VBox mainContainer = new VBox();
+        mainContainer.getChildren().addAll(canvas, bottomButtons);
+        root.getChildren().add(mainContainer);
 
         new AnimationTimer() {
 
@@ -84,7 +89,8 @@ public class Main extends Application {
     }
 
     private void setSnakeDir(Scene scene){
-        scene.setOnKeyPressed(event -> {
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            System.out.println("caught");
             switch (event.getCode()) {
                 case UP:   direction = Directions.UP; dirChange = true; break;
                 case RIGHT: direction = Directions.RIGHT;dirChange = true; break;
