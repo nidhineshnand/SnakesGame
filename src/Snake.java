@@ -8,14 +8,13 @@ public class Snake {
     ArrayList<Directions> moves = new ArrayList<>();
 
     Snake(int xCoor, int yCoor, int boxSize, boolean walls){
-        ArrayList<Directions> directions = new ArrayList<>();
-        addBlock(xCoor, yCoor, boxSize, walls, directions);
+        addBlock(xCoor, yCoor, boxSize, walls);
         _boxSize = boxSize;
         _walls = walls;
 
     }
 
-    public void addBlock(int xCoor, int yCoor, int boxSize, boolean walls, ArrayList<Directions> directions) {
+    public void addBlock(int xCoor, int yCoor, int boxSize, boolean walls) {
 
         if(snake.isEmpty()){
             moves.add(Directions.RIGHT);
@@ -64,8 +63,7 @@ public class Snake {
     public boolean isFoodEaten(int x, int y){
         SnakeBlock firstBlock = snake.get(0);
         if(Math.sqrt(Math.pow(x - firstBlock.get_xCoordinate(), 2) + (Math.pow(y - firstBlock.get_yCoordinate(), 2))) <= 9.8){
-            ArrayList<Directions> directions = new ArrayList<>();
-            addBlock(0, 0, _boxSize,_walls ,directions);
+            addBlock(0, 0, _boxSize,_walls );
             return true;
         } else {
             return false;
