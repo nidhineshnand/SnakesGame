@@ -74,9 +74,12 @@ public class Main extends Application {
                     food.changeFoodCoor();
                 }
                 gc.clearRect(0, 0, primaryStage.getWidth(), primaryStage.getHeight());
-                snakeBody.move(direction);
-                for(SnakeBlock snake : snakeBody.getSnake()) {
-                    drawSnake(gc, snake);
+                if(snakeBody.move(direction)){
+                    for(SnakeBlock snake : snakeBody.getSnake()) {
+                        drawSnake(gc, snake);
+                    }
+                } else {
+                    start.fire();
                 }
                 gc.save();
                 drawFood(gc);
