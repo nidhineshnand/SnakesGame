@@ -2,6 +2,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -34,7 +35,7 @@ public class Main extends Application {
         primaryStage.setTitle("");
         Group root = new Group();
         int boxHeight = 600;
-        Scene scene = new Scene(root, boxHeight, boxHeight + 100, Color.WHITE);
+        Scene scene = new Scene(root, boxHeight, boxHeight + 50, Color.WHITE);
 
         //Making sure that arrow keys change directions
         setSnakeDir(scene);
@@ -48,6 +49,7 @@ public class Main extends Application {
 
         //Creating buttons that will manage snakes
         HBox bottomButtons = new HBox(20);
+        bottomButtons.setAlignment(Pos.CENTER);
         //Setting start button to reset the game
         Button start = new Button("Reset");
         start.setOnAction(event -> {
@@ -67,7 +69,8 @@ public class Main extends Application {
         Label score = new Label("Points: 0");
 
         bottomButtons.getChildren().addAll(start, wall, score);
-        VBox mainContainer = new VBox();
+        VBox mainContainer = new VBox(15);
+        mainContainer.setAlignment(Pos.CENTER);
         mainContainer.getChildren().addAll(canvasBackground, bottomButtons);
         root.getChildren().add(mainContainer);
 
