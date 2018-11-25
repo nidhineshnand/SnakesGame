@@ -22,9 +22,9 @@ public class Snake {
             SnakeBlock block = new SnakeBlock(walls, boxSize, xCoor, yCoor);
             snake.add(block);
         } else{
-            SnakeBlock previousBlock = snake.get(snake.size());
+            SnakeBlock previousBlock = snake.get(snake.size() - 1);
             //Making sure that the new block is added at the right place
-            switch (moves.get(previousBlock.get_saveLength() - 1)) {
+            switch (moves.get(moves.size() - 1)) {
                 case RIGHT:
                     SnakeBlock block = new SnakeBlock(walls, boxSize, previousBlock.get_xCoordinate() - 10, previousBlock.get_yCoordinate());
                     snake.add(block);
@@ -49,13 +49,15 @@ public class Snake {
 
     //Changes the coordinates of each block so it is reflected in the move
     public void move (Directions direction){
-        moves.add( direction);
+        moves.add(0, direction);
         int counter = 0;
         for (SnakeBlock block : snake) {
-            block.move(moves.get(counter));
+            block.move(moves.get(counter*10));
             counter++;
         }
-        moves.remove(moves.size() - 1);
+        if(moves.size() > snake.size()*10 + 1) {
+            moves.remove(moves.size() - 1);
+        }
     }
 
     //Checks if food is eaten by the snake
