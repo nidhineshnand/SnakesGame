@@ -57,10 +57,6 @@ public class SnakeBlock {
             wallHit = true;
         }
 
-        //Removing the oldest direction that is used
-        if (moves.size() >= _saveLength) {
-            moves.remove(0);
-        }
     }
 
 

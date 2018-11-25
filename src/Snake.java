@@ -44,18 +44,18 @@ public class Snake {
             }
         }
 
-        moves.remove(0);
-
 
     }
 
     //Changes the coordinates of each block so it is reflected in the move
     public void move (Directions direction){
-        moves.add(direction);
+        moves.add( direction);
+        int counter = 0;
         for (SnakeBlock block : snake) {
-            block.move(direction);
+            block.move(moves.get(counter));
+            counter++;
         }
-
+        moves.remove(moves.size() - 1);
     }
 
     //Checks if food is eaten by the snake
