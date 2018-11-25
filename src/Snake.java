@@ -23,6 +23,7 @@ public class Snake {
         } else{
             SnakeBlock previousBlock = snake.get(snake.size() - 1);
             //Making sure that the new block is added at the right place
+            System.out.println(moves.get(moves.size() - 2));
             switch (moves.get(moves.size() - 1)) {
                 case RIGHT:
                     SnakeBlock block = new SnakeBlock(walls, boxSize, previousBlock.get_xCoordinate() - 10, previousBlock.get_yCoordinate());
@@ -54,7 +55,7 @@ public class Snake {
             block.move(moves.get(counter*10));
             counter++;
         }
-        if(moves.size() > snake.size()*10 + 1) {
+        if(moves.size() > snake.size()*10 + 10) {
             moves.remove(moves.size() - 1);
         }
     }

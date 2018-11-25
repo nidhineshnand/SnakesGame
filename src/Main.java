@@ -90,7 +90,6 @@ public class Main extends Application {
 
     private void setSnakeDir(Scene scene){
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            System.out.println("caught");
             switch (event.getCode()) {
                 case UP:   direction = Directions.UP; dirChange = true; break;
                 case RIGHT: direction = Directions.RIGHT;dirChange = true; break;
