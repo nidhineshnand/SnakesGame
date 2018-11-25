@@ -1,5 +1,7 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -10,10 +12,11 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 public class Main extends Application {
-    Snake snakeBody = new Snake( 10, 10,600, false);
-    Boolean walls;
+    Boolean walls = false;
+    Snake snakeBody = new Snake( 10, 10,600, walls);
     Directions direction;
     boolean dirChange;
+    int points= 0;
     Food food = new Food(600);
     public static void main(String[] args) {
         Application.launch(args);
@@ -35,7 +38,14 @@ public class Main extends Application {
         //Creating buttons that will manage snakes
         HBox bottomButtons = new HBox();
         //Setting start button to reset the game
-        Button start = new Button("Start");
+        Button start = new Button("Reset");
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                points = 0;
+                snakeBody = new Snake(10, 10,600, walls);
+            }
+        });
         Button wall = new Button("Walls");
         root.getChildren().add(canvas);
 
