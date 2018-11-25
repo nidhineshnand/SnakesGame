@@ -52,8 +52,8 @@ public class Snake {
 
     }
 
-    //Changes the coordinates of each block so it is reflected in the move
-    public void move (Directions direction){
+    //Changes the coordinates of each block so it is reflected in the move. Returns true if that is successful otherwise returns false
+    public boolean move (Directions direction){
         moves.add(0, direction);
         int counter = 0;
         for (SnakeBlock block : snake) {
@@ -62,6 +62,13 @@ public class Snake {
         }
         if(moves.size() > snake.size()*10) {
             moves.remove(moves.size() - 1);
+        }
+
+        //Check if wall has been hit
+        if (snake.get(0).hasWallBeenHit()){
+            return false;
+        } else {
+            return true;
         }
     }
 
