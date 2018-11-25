@@ -6,8 +6,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
@@ -39,14 +42,21 @@ public class Main extends Application {
         HBox bottomButtons = new HBox();
         //Setting start button to reset the game
         Button start = new Button("Reset");
-        start.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                points = 0;
-                snakeBody = new Snake(10, 10,600, walls);
-            }
+        start.setOnAction(event -> {
+            points = 0;
+            snakeBody = new Snake(10, 10,600, walls);
         });
         Button wall = new Button("Walls");
+        wall.setOnAction(e -> {
+            walls = !walls;
+            //Changing colour to signify that walls have been turned on
+            if(walls){
+                wall.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            } else {
+                wall.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+            }
+        });
+
         root.getChildren().add(canvas);
 
         new AnimationTimer() {
