@@ -6,6 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -58,8 +60,9 @@ public class Main extends Application {
                 wall.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
             }
         });
+        Label score = new Label("Points: 0");
 
-        bottomButtons.getChildren().addAll(start, wall);
+        bottomButtons.getChildren().addAll(start, wall, score);
         VBox mainContainer = new VBox();
         mainContainer.getChildren().addAll(canvas, bottomButtons);
         root.getChildren().add(mainContainer);
@@ -72,14 +75,17 @@ public class Main extends Application {
                 Boolean eaten = snakeBody.isFoodEaten(food.get_xCoordinate(), food.get_yCoordinate());
                 if(eaten){
                     food.changeFoodCoor();
+                    points = points + 10;
+                    score.setText("Points:" + points);
                 }
                 gc.clearRect(0, 0, primaryStage.getWidth(), primaryStage.getHeight());
-                if(snakeBody.move(direction)){
+                if(snakeBody.move(direction) || !walls){
                     for(SnakeBlock snake : snakeBody.getSnake()) {
                         drawSnake(gc, snake);
                     }
                 } else {
                     start.fire();
+                    points = 0;
                 }
                 gc.save();
                 drawFood(gc);
